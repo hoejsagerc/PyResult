@@ -1,0 +1,38 @@
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: [main]
+ 
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ ubuntu-20.04, windows-latest, macos-latest ]
+        python-version: [ '3.9', '3.10', '3.11', '3.12' ]
+
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Lint with Ruff
+        working-directory: src
+        run: |
+          pip install ruff
+          ruff --output-format=github .
+        continue-on-error: true
+
+      - name: run tests
+        working-directory: tests
+        run: |
+          python -m unittest discover
+          
