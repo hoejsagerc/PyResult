@@ -1,5 +1,5 @@
 <div align=center>
-  <h1>PyResult</br>Enhanced error handling for python</h1>
+  <h1 styyle="margin-bottom: 30px;">PyResult</br>Enhanced error handling for python</h1>
   
   ![GitHub Workflow Status (with event)](https://img.shields.io/github/actions/workflow/status/hoejsagerc/pyresult/Deploy.yml) ![Codecov](https://img.shields.io/codecov/c/github/hoejsagerc/pyresult)
   
